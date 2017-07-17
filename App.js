@@ -48,9 +48,6 @@ class HomeScreen extends React.Component {
     payment = this.state.login;
     months = this.state.months;
     array = this.state.array;
-    console.log("Mortgage amount: " + mortgageAmount);
-    console.log("Interest rate: " + interest);
-    console.log("Montly payment: " + payment);
     
     if (mortgageAmount == null || mortgageAmount == "" || interest == null || interest == "" || payment == null || payment == "") {
       alert("Some of the values are invalid.");
@@ -71,16 +68,10 @@ class HomeScreen extends React.Component {
       mortgageAmount = mortgageAmount - tilgung;
       this.months++;
       array.push(this.months + ". Rest: " + mortgageAmount.toFixed(2) + "€ Tilgung: " + tilgung.toFixed(2) + "€ Zinsen: " + (payment-tilgung).toFixed(2)) + "€";
-      //this.array.push("I was pushed into array");
     }
     
     kreditdauerM = this.months+1;
     kreditdauerJ = (kreditdauerM/12).toFixed(1);
-    
-    console.log(kreditdauerM + "Letzter Monat mit Restbetrag von " + mortgageAmount + " Kredit ausbezahlt");
-    console.log("Kreditdauer " + kreditdauerM + " Monate oder ca. " + kreditdauerJ + " Jahre");
-    console.log("---------------------");
-    console.log(array);
      
      var c2 = new ChatScreen();
      c2._createDataSource();
@@ -90,7 +81,6 @@ class HomeScreen extends React.Component {
   }
   
   _getArray() {
-    //array.push("shits broken mate");
     return (array);
     console.log("_get Array has this: " + array);
   }
@@ -115,7 +105,6 @@ class HomeScreen extends React.Component {
             
             <TextInput
             style={{textAlign: 'center', marginTop: 10, marginBottom: 10, borderColor: 'gray', borderWidth:1, height: 30}}
-            //placeholder="ayy lmao"
             keyboardType = {'numeric'}
             onChangeText={(text) => this.setState({username:text})}
             />
@@ -126,7 +115,6 @@ class HomeScreen extends React.Component {
             
             <TextInput
             style={{textAlign: 'center', marginTop: 10, marginBottom: 10, borderColor: 'gray', borderWidth:1, height: 30}}
-            //placeholder="uwot"
             keyboardType = {'numeric'}
             onChangeText={(text) => this.setState({password:text})}
             />
@@ -139,24 +127,15 @@ class HomeScreen extends React.Component {
             style={{textAlign: 'center', marginTop: 10, marginBottom: 10, borderColor: 'gray', borderWidth:1, height: 30}}
             keyboardType = {'numeric'}
             onChangeText={(text) => this.setState({login:text})}
-            //placeholder="m8"
             />
             
             <Button
-            //onPress={() => navigate('Chat')}
             onPress={() => this._handlePress()}
             title="Calculate"
             color="#841584" />
             
             </View>
             
-            /*<View>
-            <Text>Hello, Chat App!</Text>
-            <Button
-            onPress={() => navigate('Chat')}
-            title="Calculate"
-            />
-            </View>*/
             );
   }
 }
@@ -169,14 +148,6 @@ class ChatScreen extends React.Component {
     
     
     var c1 = new HomeScreen();
-    
-    /*this.newarray = c1._getArray();
-    console.log("i got dis array" + this.newarray);
-    
-    const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2});
-    this.state = {
-    dataSource: ds.cloneWithRows(this.newarray),
-  };*/
   
   } //end of constructor
   
@@ -185,10 +156,6 @@ class ChatScreen extends React.Component {
     var c1 = new HomeScreen();
     const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2});
     this.newarray = c1._getArray();
-    /*this.state = {
-    dataSource: ds.cloneWithRows(this.newarray),
-    };*/
-    console.log("this is what i got now: " + this.newarray);
     dataSource = ds.cloneWithRows(this.newarray);
     
   }
@@ -203,7 +170,6 @@ class ChatScreen extends React.Component {
             
             <View style={styles.listview}>
             <ListView
-            //dataSource={this.state.dataSource}
             dataSource={dataSource}
             renderRow={(data) => <View><Text>{data}</Text></View>}
             />
@@ -227,7 +193,6 @@ const SimpleApp = StackNavigator({
 const styles = StyleSheet.create({
                                  container: {
                                  flex: 1,
-                                 //justifyContent: 'center',
                                  alignItems: 'center',
                                  padding: 30,
                                  backgroundColor: '#FFFFFF',
